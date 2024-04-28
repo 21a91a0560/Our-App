@@ -1,0 +1,50 @@
+This is the instruction for the phase 2 of our League of Legends social app.
+
+---------------------Login credentials--------------------------
+Users:
+    username: user 
+    password: user
+
+    username: evan
+    password: loser123
+
+    username: ello
+    password: loser123
+
+Admin:
+ username: admin; 
+    password: admin;
+
+--------------Find Others and Find tournaments -----------------------
+Find others and find tournaments now searches users and tournaments in the database
+--------------------User---------------------------
+The user's league of legends username will be validated during registration, and if the corresponding league username has a rank, the rank will be reflected in user profile.
+The user can now send private message to their friends, and access any tournaments they are in at the bottom bar.
+The user 'evan' and user 'ello' are friends in the database, so by logging in to one of them you can message to the other, and the other will receive all the messages when it is logged in.
+-------------------Team-----------------------------
+There is a team profile page for each team. The amount of models won and the average rank of the team is shown to the left.
+And the current members of the team will be shown in the tab.
+If the current logged in user is a member in the team, a setting tab will be shown which allows the user to leave the team. If
+the current user is the owner of the team, they can check the incoming joining requests and add/reject players.
+-------------------Tournament--------------------------
+There is a tournament profile page for each tournament. The current participants will be shown in the tab.
+If the current logged in user participated in this tournament, a setting tab will be shown which allows the user to leave tournament.
+However, there isn't any other interaction implemented.
+
+------------------Admin Specific Instructions----------------------------
+The admin can see all the users currently in the database, however we havn't implemented any way to change any credential.
+
+frontend: https://etourneys-front.herokuapp.com/
+backend: https://etourneys-example.herokuapp.com/
+
+
+
+
+
+
+
+
+
+
+
+

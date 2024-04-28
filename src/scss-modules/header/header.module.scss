@@ -1,0 +1,92 @@
+@import "../scss-general-modules/whole-dir_scss.module";
+
+.headerContainer {
+    background: $header-footer-background-color;
+    height: 60px;
+    z-index: 9999;
+
+
+    .rowStyles {
+        height: 60px;
+        border-bottom: 1px solid $golden-login-border-color;
+
+        align-items: center;
+
+        #explore {
+            margin: auto;
+            color: $golden-login-border-color;
+            @extend .sanson-font-style;
+            font-size: 2rem;
+            text-decoration: none;
+        }
+
+        .middleNav {
+
+            li {
+                padding: 0 10px;
+                @extend .sanson-font-style;
+                font-size: 30px;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+            // display: none;
+
+            
+        }
+
+        .rightNav {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+
+
+
+// bootstrap breakpoints
+
+// @media (min-width: 0px) {
+
+//     .helpSection div div.right {
+//         // background: red;
+//         text-align: left;
+//     }
+// }
+
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) { 
+//     .helpSection div div.right {
+//         // background: red;
+//         text-align: right;
+//     }
+// }
+@media (max-width: 767px) {
+
+    .middleNav {
+        display: none;
+    }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+
+    .middleNav {
+        display: flex;
+    }
+}
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) { 
+
+//     .formArea {
+//         max-width: 500px;
+//     }
+// }

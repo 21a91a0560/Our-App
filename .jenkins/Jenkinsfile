@@ -1,0 +1,97 @@
+pipeline {
+    agent none
+    triggers {
+        GenericTrigger(
+             genericVariables: [
+              [key: 'ref', value: '$.ref']
+             ],
+             genericRequestVariables: [
+              [key: 'X-GitHub-Event'],
+             ],
+             genericHeaderVariables: [
+              [key: 'X-GitHub-Event'],
+             ],
+
+             causeString: 'Triggered on the branch $ref with $x_github_event',
+
+             token: 'abc123',
+
+             printContributedVariables: true,
+             printPostContent: true,
+
+             silentResponse: false,
+
+             regexpFilterText: '$ref',
+             regexpFilterExpression: '^(refs/heads/' + BRANCH_NAME + ')$'
+        )
+    }
+    stages {
+        stage('build') {
+            agent { docker { image 'node:12.13.0-alpine' } }
+            when {
+                expression {
+                    currentBuild.buildCauses[0].shortDescription != "Branch indexing"
+                }
+            }
+            steps {
+                echo "${currentBuild.buildCauses[0].shortDescription}"
+                echo sh(returnStdout: true, script: 'env')
+                sh 'npm --version'
+                sh 'node --version'
+                sh 'ls'
+            }
+        }
+
+        stage('Staging approval') {
+            when {
+                expression {
+                    currentBuild.buildCauses[0].shortDescription != "Branch indexing"
+                }
+            }
+            steps {
+                input "Push to staging??"
+            }
+        }
+
+        stage('Staging') {
+            when {
+                expression {
+                    currentBuild.buildCauses[0].shortDescription != "Branch indexing"
+                }
+            }
+            steps {
+                echo "staging"
+            }
+        }
+        
+        stage('Production approval') {
+            when {
+                expression {
+                    currentBuild.buildCauses[0].shortDescription != "Branch indexing"
+                }
+            }
+            steps {
+                input "Push to production?"
+            }
+        }
+        
+        stage('Deploy') {
+            when {
+                expression {
+                    currentBuild.buildCauses[0].shortDescription != "Branch indexing"
+                }
+            }
+            steps {
+                echo "Deploying"
+            }
+        }    
+    }
+    post {
+        success {
+            echo 'Job Succeed'
+        }
+        failure {
+            echo 'Job Failure'
+        }
+    }
+}

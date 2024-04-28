@@ -1,0 +1,8 @@
+@import "../scss-general-modules/whole-dir_scss.module";
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px;
+    background: $dark-bg-login;
+}
